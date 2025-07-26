@@ -6,8 +6,20 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="{% static 'css/output.css' %}" rel="stylesheet" />
+		<title>{% block title %}{% endblock %}</title>
 	</head>
-	<body>
-		<h1 class="text-xl font-bold underline text-red-500">Hello world!</h1>
+	<body class="flex flex-col min-h-screen">
+		<nav class="sticky top-0 h-14 bg-orange-500 grid grid-cols-2 md:grid-cols-3 px-4">
+			<div class="col-span-1 hidden md:block"></div>
+			<div class="col-span-1 flex justify-start md:justify-center items-center">
+				<a href="/" class="text-2xl font-bold text-white">Linkwall</a>
+			</div>
+			<div class="col-span-1 flex justify-end items-center">
+				{% block navbar %}{% endblock %}
+			</div>
+		</nav>
+		<main class="flex-1"> 
+			{% block content %}{% endblock %}
+		</main>
 	</body>
 </html>
