@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 {% block title %}
 Linkwall | Sign Up
@@ -8,7 +9,22 @@ Linkwall | Sign Up
 <h2>Sign Up</h2>
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+
+  {% for field in form %}
+    <div>
+      <label for="{{ field.id_for_label }}" class="text-green-500">
+        {{ field.label }}
+      </label>
+      {{ field|add_class:"border border-green-500" }}
+
+      {% if field.errors %}
+      <p class="text-red-500">
+        {{ field.errors.0 }}
+      </p>
+    {% endif %}
+    </div>
+  {% endfor %}
+
   <button type="submit">Sign Up</button>
 </form>
 {% endblock %}
