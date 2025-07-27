@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 
 {% block title %}
-Linkwall | Login
+Linkwall | Log In
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@ Linkwall | Login
     {% for field in form %}
       <div class="flex flex-col">
         <label for="{{ field.id_for_label }}" class="">
-          {{ field.label }}
+          {{ field.label|title }}
         </label>
         {{ field|add_class:"h-9 px-3 py-1.5 rounded-full border border-line focus:outline-none mb-3" }}
       </div>
