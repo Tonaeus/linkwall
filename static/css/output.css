@@ -11,6 +11,7 @@
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-orange-500: oklch(70.5% 0.213 47.604);
     --color-green-500: oklch(72.3% 0.219 149.579);
+    --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-white: #fff;
     --spacing: 0.25rem;
     --text-2xl: 1.5rem;
@@ -181,9 +182,6 @@
   .mb-3 {
     margin-bottom: calc(var(--spacing) * 3);
   }
-  .mb-6 {
-    margin-bottom: calc(var(--spacing) * 6);
-  }
   .mb-14 {
     margin-bottom: calc(var(--spacing) * 14);
   }
@@ -260,6 +258,9 @@
   .py-1\.5 {
     padding-block: calc(var(--spacing) * 1.5);
   }
+  .text-center {
+    text-align: center;
+  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -267,6 +268,9 @@
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
+  }
+  .text-blue-700 {
+    color: var(--color-blue-700);
   }
   .text-green-500 {
     color: var(--color-green-500);
@@ -276,6 +280,13 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  .hover\:underline {
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
+      }
+    }
   }
   .focus\:outline-none {
     &:focus {
