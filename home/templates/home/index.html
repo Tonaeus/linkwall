@@ -1,18 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Linkwall
 {% endblock %}
 
 {% block navbar %}
-Auth buttons
+<a href="/accounts/login/">
+  <img src="{% static 'images/account-circle.png' %}" alt="Account" class="w-8 h-8" />
+</a>
 {% endblock %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
 {% else %}
 <p>You are not logged in</p>
 <a href="{% url 'login' %}">Log In</a>
 {% endif %}
+
 {% endblock %}
