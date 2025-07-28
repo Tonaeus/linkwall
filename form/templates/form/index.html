@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Linkwall | Form
+{% endblock %}
+
+{% block navbar %}
+<a href="{% url 'accounts:logout' %}">Logout</a>
+{% endblock %}
+
+{% block content %}
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ profile_form.as_p }}
+    
+    <h3>Your Links ({{ current_links_count }}/{{ max_links }})</h3>
+    
+    {{ formset.management_form }}
+    <table>
+        <thead>
+            <tr>
+                <th>Label</th>
+                <th>URL</th>
+                <th>Order</th>
+                <th>Delete?</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for form in formset %}
+        <tr>
+            <td>{{ form.label }}</td>
+            <td>{{ form.url }}</td>
+            <td>{{ form.order }}</td>
+            <td>{{ form.DELETE }}</td>
+        </tr>
+        {% endfor %}
+</tbody>
+    </table>
+    
+    <button type="submit">Save changes</button>
+    
+    {% if not can_add_more %}
+      <p>You have reached the maximum number of links allowed ({{ max_links }}).</p>
+    {% endif %}
+</form>
+
+{% endblock %}

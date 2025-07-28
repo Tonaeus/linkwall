@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "home",
     "accounts",
+    "form",
 ]
 
 MIDDLEWARE = [
