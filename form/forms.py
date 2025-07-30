@@ -4,7 +4,7 @@ from .models import Profile, Link
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'bio', 'avatar']
+        fields = ['avatar', 'name', 'bio']
 
 class LinkForm(forms.ModelForm):
     class Meta:

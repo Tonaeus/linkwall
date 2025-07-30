@@ -22,12 +22,17 @@ def edit(request):
     )
 
     if request.method == "POST":
-        profile_form = ProfileForm(request.POST, instance=profile)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
         link_formset = LinkFormSet(request.POST, instance=profile)
 
         if profile_form.is_valid() and link_formset.is_valid():
             profile_form.save()
             link_formset.save()
+            return redirect("form:edit") 
+        else:
+            print("ProfileForm errors:", profile_form.errors.as_json())
+            print("LinkFormSet errors:", link_formset.errors)
+            print("FILES received:", request.FILES)
     else:
         profile_form = ProfileForm(instance=profile)
         link_formset = LinkFormSet(instance=profile)

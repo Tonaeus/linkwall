@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 
 {% block title %}
-Linkwall | Edit
+Linkwall | Edit Profile
 {% endblock %}
 
 {% block navbar %}
@@ -11,7 +11,7 @@ Linkwall | Edit
 
 {% block content %}
 <div class="flex flex-1 justify-center items-center">
-  <form method="post" class="w-80 mb-14">
+  <form method="post" enctype="multipart/form-data" class="w-80 mb-14">
     {% csrf_token %}
 
     {% for field in profile_form %}
@@ -30,6 +30,9 @@ Linkwall | Edit
 
     {{ link_formset.management_form }}
     {% for form in link_formset %}
+      {% for field in form.hidden_fields %}
+        {{ field }}
+      {% endfor %}
       {% for field in form.visible_fields %}
         <div class="flex flex-col">
           <label for="{{ field.id_for_label }}">
