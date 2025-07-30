@@ -5,5 +5,5 @@ from . import views
 app_name = "form"
 
 urlpatterns = [
-    path("edit", views.edit, name="edit"),
+    path("edit-profile", views.edit, name="edit"),
 ]

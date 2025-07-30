@@ -6,18 +6,19 @@ Linkwall
 {% endblock %}
 
 {% block navbar %}
-<a href="{% url 'accounts:login' %}">
-  <img src="{% static 'images/account-circle.png' %}" alt="Account" class="w-8 h-8" />
-</a>
-<a href="{% url 'accounts:logout' %}">Logout</a>
+
+{% if user.is_authenticated %}
+{% include "partials/profile_button.html" %}
+{% endif %}
+
+{% if not user.is_authenticated %}
+{% include "partials/login_button.html" %}
+{% else %}
+{% include "partials/logout_button.html" %}
+{% endif %}
+
 {% endblock %}
 
 {% block content %}
-
-{% if user.is_authenticated %}
-Hi {{ user.username }}!
-{% else %}
-<p>You are not logged in</p>
-{% endif %}
 
 {% endblock %}

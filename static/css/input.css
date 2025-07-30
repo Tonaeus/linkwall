@@ -4,4 +4,8 @@
 	.error {
 		@apply w-full min-h-9 border border-red-500 rounded p-1.5 bg-red-100 text-red-500 break-words whitespace-normal;
 	}
+
+	.nav-btn {
+		@apply flex justify-center items-center h-9 w-9 rounded-full hover:bg-orange-600 transition;
+	}
 }
