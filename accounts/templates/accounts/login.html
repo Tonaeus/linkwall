@@ -12,7 +12,7 @@ Linkwall | Log In
     
     {% for field in form %}
       <div class="flex flex-col">
-        <label for="{{ field.id_for_label }}" class="">
+        <label for="{{ field.id_for_label }}">
           {{ field.label|title }}
         </label>
         {{ field|add_class:"h-9 px-3 py-1.5 rounded-full border border-line focus:outline-none mb-3" }}
@@ -27,7 +27,9 @@ Linkwall | Log In
       <div class="h-6"></div>
     {% endif %}
 
-    <button type="submit" class="h-9 w-full bg-orange-500 rounded-full text-white mb-3">Log In</button>
+    <button type="submit" class="h-9 w-full bg-orange-500 rounded-full text-white mb-3">
+      Log In
+    </button>
 
     <p class="text-center">
 			Don't Have an account?

@@ -14,7 +14,9 @@ class Link(models.Model):
     profile = models.ForeignKey(Profile, related_name='links', on_delete=models.CASCADE)
     label = models.CharField(max_length=127)
     url = models.URLField()
-    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         return f"{self.label} ({self.url})"

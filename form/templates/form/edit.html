@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+Linkwall | Edit
+{% endblock %}
+
+{% block navbar %}
+<a href="{% url 'accounts:logout' %}">Logout</a>
+{% endblock %}
+
+{% block content %}
+<div class="flex flex-1 justify-center items-center">
+  <form method="post" class="w-80 mb-14">
+    {% csrf_token %}
+
+    {% for field in profile_form %}
+      <div class="flex flex-col">
+        <label for="{{ field.id_for_label }}">
+          {{ field.label|title }}
+        </label>
+        {{ field|add_class:"h-9 px-3 py-1.5 rounded-full border border-line focus:outline-none mb-3" }}
+        {% if field.errors %}
+          <p class="error mb-3">
+            {{ field.errors.0 }}
+          </p>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    {{ link_formset.management_form }}
+    {% for form in link_formset %}
+      {% for field in form.visible_fields %}
+        <div class="flex flex-col">
+          <label for="{{ field.id_for_label }}">
+            {{ field.label|title }}
+          </label>
+          {{ field|add_class:"h-9 px-3 py-1.5 rounded-full border border-line focus:outline-none mb-3" }}
+          {% if field.errors %}
+            <p class="error mb-3">
+              {{ field.errors.0 }}
+            </p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endfor %}
+
+    <button type="submit" class="h-9 w-full bg-orange-500 rounded-full text-white mt-4">
+      Save Changes
+    </button>
+  </form>
+</div>
+{% endblock %}
