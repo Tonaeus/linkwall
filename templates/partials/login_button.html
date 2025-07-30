@@ -1,1 +1,5 @@
-<a href="{% url 'accounts:login' %}">Login</a>
+{% load static %}
+
+<a href="{% url 'accounts:login' %}" class="nav-btn">
+  <img src="{% static 'images/login.png' %}" alt="login" class="w-6 h-6" />
+</a>

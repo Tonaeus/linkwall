@@ -6,7 +6,7 @@ Linkwall | Edit Profile
 {% endblock %}
 
 {% block navbar %}
-<a href="{% url 'accounts:logout' %}">Logout</a>
+{% include "partials/logout_button.html" %}
 {% endblock %}
 
 {% block content %}

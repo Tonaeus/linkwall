@@ -1,1 +1,5 @@
-<a href="{% url 'accounts:logout' %}">Logout</a>
+{% load static %}
+
+<a href="{% url 'accounts:login' %}" class="nav-btn">
+  <img src="{% static 'images/logout.png' %}" alt="logout" class="w-6 h-6" />
+</a>
