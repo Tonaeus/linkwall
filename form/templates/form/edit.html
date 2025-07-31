@@ -14,20 +14,20 @@ Linkwall | Edit Profile
   <form method="post" enctype="multipart/form-data" class="w-80 mb-14">
     {% csrf_token %}
 
-    {% comment %} {% for field in profile_form %}
+    {% for field in profile_form %}
       <div class="flex flex-col">
         <label for="{{ field.id_for_label }}">
           {{ field.label|title }}
         </label>
 
         {% with wt=field|widget_type %}
-          <h1>Widget type: {{ wt }}</h1>
+          {% comment %} <p>Widget type: {{ wt }}</p> {% endcomment %}
           {% if wt == "textinput" %}
-            {{ field|add_class:"bg-blue-500" }}
+            {{ field|add_class:"text-input mb-3" }}
           {% elif wt == "textarea" %}
-            {{ field|add_class:"bg-red-500" }}
-          {% elif wt == "clearablefileinput" %}
-            {{ field|add_class:"bg-green-500" }}
+            {{ field|add_class:"text-area mb-3" }}
+          {% elif wt == "customfileinput" %}
+            {{ field|add_class:"mb-3" }}
           {% endif %}
         {% endwith %}
 
@@ -37,9 +37,9 @@ Linkwall | Edit Profile
           </p>
         {% endif %}
       </div>
-    {% endfor %} {% endcomment %}
+    {% endfor %}
 
-    <div class="flex flex-col">
+    {% comment %} <div class="flex flex-col">
       <label for="{{ profile_form.name.id_for_label }}">
         {{ profile_form.name.label }}
       </label>
@@ -67,7 +67,7 @@ Linkwall | Edit Profile
       {% if profile_form.avatar.errors %}
         <p class="error mb-3">{{ profile_form.avatar.errors.0 }}</p>
       {% endif %}
-    </div>
+    </div> {% endcomment %}
     
     {{ link_formset.management_form }}
     {% for form in link_formset %}

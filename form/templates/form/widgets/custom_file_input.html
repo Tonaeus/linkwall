@@ -1,0 +1,26 @@
+{% comment %} 
+<div>
+  {% if widget.is_initial %}
+    Avatar
+    <img src="{{ widget.value.url }}" alt="Current Avatar" class="h-20 w-20 rounded-full mb-2" />
+    {% if not widget.is_required %}
+      <label>
+        Clear
+        <input type="checkbox" name="{{ widget.checkbox_name }}">
+      </label>
+    {% endif %}
+  {% endif %}
+  <input type="file" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
+</div> 
+{% endcomment %}
+
+<div>
+  <label for="{{ widget.attrs.id }}" class="flex items-center justify-center w-full h-9 rounded p-1.5 bg-orange-500 text-white cursor-pointer mb-3">
+    {% if not widget.is_initial %}
+    Upload Image
+    {% else %}
+    Change Image
+    {% endif %}
+  </label>
+  <input type="file" name="{{ widget.name }}" id="{{ widget.attrs.id }}" style="display:none;" {% include "django/forms/widgets/attrs.html" %}>
+</div>

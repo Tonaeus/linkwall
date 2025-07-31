@@ -29,10 +29,6 @@ def edit(request):
             profile_form.save()
             link_formset.save()
             return redirect("form:edit") 
-        else:
-            print("ProfileForm errors:", profile_form.errors.as_json())
-            print("LinkFormSet errors:", link_formset.errors)
-            print("FILES received:", request.FILES)
     else:
         profile_form = ProfileForm(instance=profile)
         link_formset = LinkFormSet(instance=profile)
