@@ -1,14 +1,14 @@
 {% load static %}
 
 <div>
-  <div class="w-full aspect-square mb-3">
+  <label for="{{ widget.attrs.id }}" class="block w-full aspect-square mb-3">
     <img
       id="avatar-preview"
       src="{% if widget.is_initial %}{{ widget.value.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}"
       alt="Current Avatar"
       class="h-full w-full rounded-full object-cover"
     />
-  </div>
+  </label>
 
   <label for="{{ widget.attrs.id }}" class="btn bg-orange-500 hover:bg-orange-600 text-white mb-3">
     {% if not widget.is_initial %}
