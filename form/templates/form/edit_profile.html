@@ -16,17 +16,19 @@ Linkwall | Edit Profile
 
     {% for field in profile_form %}
       <div class="flex flex-col">
-        <label for="{{ field.id_for_label }}">
-          {{ field.label|title }}
-        </label>
-
         {% with wt=field|widget_type %}
-          {% if wt == "textinput" %}
+          {% if wt == "customfileinput" %}
+            {{ field }}
+          {% elif wt == "textinput" %}
+            <label for="{{ field.id_for_label }}" class="text-sm mb-1">
+              {{ field.label|title }}
+            </label>
             {{ field|add_class:"text-input mb-3" }}
           {% elif wt == "textarea" %}
+            <label for="{{ field.id_for_label }}" class="text-sm mb-1">
+              {{ field.label|title }}
+            </label>
             {{ field|add_class:"text-area mb-3" }}
-          {% elif wt == "customfileinput" %}
-            {{ field|add_class:"mb-3" }}
           {% endif %}
         {% endwith %}
 
@@ -45,8 +47,8 @@ Linkwall | Edit Profile
       {% endfor %}
       {% for field in form.visible_fields %}
         <div class="flex flex-col">
-          <label for="{{ field.id_for_label }}">
-            {{ field.label|title }}
+          <label for="{{ field.id_for_label }}" class="text-sm mb-1">
+            {{ field.label|title }} {{ forloop.parentloop.counter }}
           </label>
 
           {{ field|add_class:"text-input mb-3" }}

@@ -6,7 +6,7 @@ from .forms import ProfileForm, LinkForm
 from django.forms import inlineformset_factory
 
 @login_required
-def edit(request):
+def edit_profile(request):
     profile = get_object_or_404(Profile, user=request.user)
 
     links_limit = 5
@@ -28,12 +28,12 @@ def edit(request):
         if profile_form.is_valid() and link_formset.is_valid():
             profile_form.save()
             link_formset.save()
-            return redirect("form:edit") 
+            return redirect("form:edit_profile") 
     else:
         profile_form = ProfileForm(instance=profile)
         link_formset = LinkFormSet(instance=profile)
 
-    return render(request, "form/edit.html", {
+    return render(request, "form/edit_profile.html", {
         "profile_form": profile_form,
         "link_formset": link_formset,
     })

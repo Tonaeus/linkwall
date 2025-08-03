@@ -6,11 +6,11 @@
 	}
 
 	.text-input {
-		@apply w-full h-9 border border-gray-500 rounded p-1.5 focus:outline-none focus:ring-[3px] focus:ring-orange-500/75 transition;
+		@apply w-full h-9 border border-gray-500 rounded p-1.5 focus:outline-none focus:ring-[3px] focus:ring-orange-500/75 transition selection:bg-orange-500 selection:text-white;
 	}
 
 	.text-area {
-		@apply w-full h-27 resize-none border border-gray-500 rounded p-1.5 focus:outline-none focus:ring-[3px] focus:ring-orange-500/75 transition;
+		@apply w-full h-27 resize-none border border-gray-500 rounded p-1.5 focus:outline-none focus:ring-[3px] focus:ring-orange-500/75 transition selection:bg-orange-500 selection:text-white;
 	}
 
 	.nav-btn {
