@@ -1,19 +1,3 @@
-{% comment %} 
-<div>
-  {% if widget.is_initial %}
-    Avatar
-    <img src="{{ widget.value.url }}" alt="Current Avatar" class="h-20 w-20 rounded-full mb-2" />
-    {% if not widget.is_required %}
-      <label>
-        Clear
-        <input type="checkbox" name="{{ widget.checkbox_name }}">
-      </label>
-    {% endif %}
-  {% endif %}
-  <input type="file" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
-</div> 
-{% endcomment %}
-
 {% load static %}
 
 <div>
@@ -53,45 +37,45 @@
 </div>
 
 <script>
-  const fileInput = document.getElementById("{{ widget.attrs.id }}");
-  const previewImg = document.getElementById("avatar-preview");
-  const deleteCheckbox = document.getElementById("delete-checkbox");
+  const inputElement = document.getElementById("{{ widget.attrs.id }}");
+  const deleteElement = document.getElementById("delete-checkbox");
+  const previewElement = document.getElementById("avatar-preview");
 
-  const originalImageSrc = previewImg.src;
-  let lastUploadedImageSrc = originalImageSrc;
+  const originalImageUrl = previewElement.src;
+  let currentImageUrl = originalImageUrl;
 
-  fileInput.addEventListener('change', function(event) {
+  inputElement.addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function(e) {
-        previewImg.src = e.target.result;
-        previewImg.style.display = 'block';
-        lastUploadedImageSrc = e.target.result;
-        if (deleteCheckbox) {
-          deleteCheckbox.checked = false;
+        previewElement.src = e.target.result;
+        previewElement.style.display = 'block';
+        if (deleteElement) {
+          currentImageUrl = e.target.result;
+          deleteElement.checked = false;
         }
       }
       reader.readAsDataURL(file);
     } 
     else {
       {% if widget.is_initial %}
-        previewImg.src = "{{ widget.value.url }}";
-        lastUploadedImageSrc = "{{ widget.value.url }}";
+        previewElement.src = "{{ widget.value.url }}";
+        currentImageUrl = "{{ widget.value.url }}";
       {% else %}
-        previewImg.style.display = 'none';
+        previewElement.style.display = 'none';
       {% endif %}
     }
   });
+  if (deleteElement) {
 
-  if (deleteCheckbox) {
-    deleteCheckbox.addEventListener('change', function() {
+    deleteElement.addEventListener('change', function() {
       if (this.checked) {
-        previewImg.src = "{% static 'images/default-avatar.png' %}";
-        fileInput.value = '';
+        previewElement.src = "{% static 'images/default-avatar.png' %}";
+        inputElement.value = '';
       } 
       else {
-        previewImg.src = lastUploadedImageSrc;
+        previewElement.src = currentImageUrl;
       }
     });
   }
