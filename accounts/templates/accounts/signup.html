@@ -25,11 +25,7 @@ Linkwall | Sign Up
       </div>
     {% endfor %}
 
-    {% with last_field=form.visible_fields|last %}
-      {% if not last_field.errors %}
-        <div class="h-6"></div>
-      {% endif %}
-    {% endwith %}
+    <div class="h-6"></div>
 
     <button type="submit" class="btn bg-orange-500 hover:bg-orange-600 text-white mb-3">
       Sign Up

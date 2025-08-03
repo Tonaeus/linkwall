@@ -46,21 +46,25 @@ Linkwall | Edit Profile
         {{ field }}
       {% endfor %}
       {% for field in form.visible_fields %}
-        <div class="flex flex-col">
-          <label for="{{ field.id_for_label }}" class="text-sm mb-1">
-            {{ field.label|title }} {{ forloop.parentloop.counter }}
-          </label>
+        {% if field.name != 'DELETE' %}
+          <div class="flex flex-col">
+            <label for="{{ field.id_for_label }}" class="text-sm mb-1">
+              {{ field.label|title }} {{ forloop.parentloop.counter }}
+            </label>
 
-          {{ field|add_class:"text-input mb-3" }}
+            {{ field|add_class:"text-input mb-3" }}
 
-          {% if field.errors %}
-            <p class="error mb-3">
-              {{ field.errors.0 }}
-            </p>
-          {% endif %}
-        </div>
+            {% if field.errors %}
+              <p class="error mb-3">
+                {{ field.errors.0 }}
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
       {% endfor %}
     {% endfor %}
+
+    <div class="h-6"></div>
 
     <button type="submit" class="btn bg-orange-500 hover:bg-orange-600 text-white">
       Save Changes

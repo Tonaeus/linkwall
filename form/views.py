@@ -18,7 +18,7 @@ def edit_profile(request):
         fields=['label', 'url'],
         extra=max(0, links_limit - links_count),
         max_num=links_limit,
-        can_delete=False,
+        can_delete=True,
     )
 
     if request.method == "POST":

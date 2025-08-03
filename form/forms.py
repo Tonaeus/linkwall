@@ -31,3 +31,13 @@ class LinkForm(forms.ModelForm):
     class Meta:
         model = Link
         fields = ['label', 'url']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        label = cleaned_data.get('label', '').strip()
+        url = cleaned_data.get('url', '').strip()
+
+        if label == '' and url == '':
+            self.cleaned_data['DELETE'] = True
+            
+        return cleaned_data
