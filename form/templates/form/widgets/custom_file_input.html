@@ -15,7 +15,7 @@
 {% endcomment %}
 
 <div>
-  <label for="{{ widget.attrs.id }}" class="flex items-center justify-center w-full h-9 rounded p-1.5 bg-orange-500 text-white cursor-pointer mb-3">
+  <label for="{{ widget.attrs.id }}" class="btn bg-orange-500 hover:bg-orange-600 text-white mb-3">
     {% if not widget.is_initial %}
     Upload Image
     {% else %}
@@ -23,4 +23,20 @@
     {% endif %}
   </label>
   <input type="file" name="{{ widget.name }}" id="{{ widget.attrs.id }}" style="display:none;" {% include "django/forms/widgets/attrs.html" %}>
+
+  {% if widget.is_initial and not widget.is_required %}
+    <div class="relative w-full">
+      <input type="checkbox" name="{{ widget.checkbox_name }}" id="delete-checkbox" class="peer hidden">
+      <label for="delete-checkbox"
+             class="btn
+                    border border-gray-300 peer-checked:border-orange-300
+                    text-gray-500 peer-checked:text-orange-500
+                    bg-gray-100 peer-checked:bg-orange-100
+                    hover:bg-gray-200 peer-checked:hover:bg-orange-200
+                    ">
+        Delete Image
+      </label>
+    </div>
+  {% endif %}
+
 </div>

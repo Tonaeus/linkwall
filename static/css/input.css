@@ -16,4 +16,8 @@
 	.nav-btn {
 		@apply flex justify-center items-center h-9 w-9 rounded-full hover:bg-orange-600 transition;
 	}
+
+	.btn {
+		@apply flex items-center justify-center w-full h-9 rounded p-1.5 cursor-pointer transition;
+	}
 }
