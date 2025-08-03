@@ -14,15 +14,27 @@
 </div> 
 {% endcomment %}
 
+{% load static %}
+
 <div>
+  <div class="w-full aspect-square mb-3">
+    <img
+      id="avatar-preview"
+      src="{% if widget.is_initial %}{{ widget.value.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}"
+      alt="Current Avatar"
+      class="h-full w-full rounded-full object-cover"
+    />
+  </div>
+
   <label for="{{ widget.attrs.id }}" class="btn bg-orange-500 hover:bg-orange-600 text-white mb-3">
     {% if not widget.is_initial %}
-    Upload Image
+      Upload Image
     {% else %}
-    Change Image
+      Change Image
     {% endif %}
   </label>
-  <input type="file" name="{{ widget.name }}" id="{{ widget.attrs.id }}" style="display:none;" {% include "django/forms/widgets/attrs.html" %}>
+
+  <input type="file" name="{{ widget.name }}" id="{{ widget.attrs.id }}" style="display:none" accept="image/*" {% include "django/forms/widgets/attrs.html" %}>
 
   {% if widget.is_initial and not widget.is_required %}
     <div class="relative w-full">
@@ -38,5 +50,49 @@
       </label>
     </div>
   {% endif %}
-
 </div>
+
+<script>
+  const fileInput = document.getElementById("{{ widget.attrs.id }}");
+  const previewImg = document.getElementById("avatar-preview");
+  const deleteCheckbox = document.getElementById("delete-checkbox");
+
+  const originalImageSrc = previewImg.src;
+  let lastUploadedImageSrc = originalImageSrc;
+
+  fileInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        previewImg.src = e.target.result;
+        previewImg.style.display = 'block';
+        lastUploadedImageSrc = e.target.result;
+        if (deleteCheckbox) {
+          deleteCheckbox.checked = false;
+        }
+      }
+      reader.readAsDataURL(file);
+    } 
+    else {
+      {% if widget.is_initial %}
+        previewImg.src = "{{ widget.value.url }}";
+        lastUploadedImageSrc = "{{ widget.value.url }}";
+      {% else %}
+        previewImg.style.display = 'none';
+      {% endif %}
+    }
+  });
+
+  if (deleteCheckbox) {
+    deleteCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        previewImg.src = "{% static 'images/default-avatar.png' %}";
+        fileInput.value = '';
+      } 
+      else {
+        previewImg.src = lastUploadedImageSrc;
+      }
+    });
+  }
+</script>

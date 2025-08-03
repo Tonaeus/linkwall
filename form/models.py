@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from utils.file_utils import avatar_upload_to
+from django.templatetags.static import static
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
