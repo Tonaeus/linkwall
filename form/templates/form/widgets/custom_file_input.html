@@ -1,12 +1,12 @@
 {% load static %}
 
 <div class="mb-3">
-  <label for="{{ widget.attrs.id }}" class="block w-full aspect-square mb-3">
+  <label for="{{ widget.attrs.id }}" class="flex justify-center items-center w-full mb-3">
     <img
       id="avatar-preview"
       src="{% if widget.is_initial %}{{ widget.value.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}"
       alt="Current Avatar"
-      class="h-full w-full rounded-full object-cover"
+      class="w-3/4 aspect-square rounded-full object-cover"
     />
   </label>
 
