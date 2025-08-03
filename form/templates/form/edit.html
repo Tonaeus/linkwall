@@ -11,7 +11,7 @@ Linkwall | Edit Profile
 
 {% block content %}
 <div class="flex flex-1 justify-center items-center">
-  <form method="post" enctype="multipart/form-data" class="w-80 mb-14">
+  <form method="post" enctype="multipart/form-data" class="w-80">
     {% csrf_token %}
 
     {% for field in profile_form %}
@@ -21,7 +21,6 @@ Linkwall | Edit Profile
         </label>
 
         {% with wt=field|widget_type %}
-          {% comment %} <p>Widget type: {{ wt }}</p> {% endcomment %}
           {% if wt == "textinput" %}
             {{ field|add_class:"text-input mb-3" }}
           {% elif wt == "textarea" %}
@@ -38,36 +37,6 @@ Linkwall | Edit Profile
         {% endif %}
       </div>
     {% endfor %}
-
-    {% comment %} <div class="flex flex-col">
-      <label for="{{ profile_form.name.id_for_label }}">
-        {{ profile_form.name.label }}
-      </label>
-      {{ profile_form.name|add_class:"text-input mb-3" }}
-      {% if profile_form.name.errors %}
-        <p class="error mb-3">{{ profile_form.name.errors.0 }}</p>
-      {% endif %}
-    </div>
-
-    <div class="flex flex-col">
-      <label for="{{ profile_form.biography.id_for_label }}">
-        {{ profile_form.biography.label }}
-      </label>
-      {{ profile_form.biography|add_class:"text-area mb-3" }}
-      {% if profile_form.biography.errors %}
-        <p class="error mb-3">{{ profile_form.biography.errors.0 }}</p>
-      {% endif %}
-    </div>
-
-    <div class="flex flex-col">
-      <label for="{{ profile_form.avatar.id_for_label }}">
-        {{ profile_form.avatar.label }}
-      </label>
-      {{ profile_form.avatar|add_class:"text-input mb-3" }}
-      {% if profile_form.avatar.errors %}
-        <p class="error mb-3">{{ profile_form.avatar.errors.0 }}</p>
-      {% endif %}
-    </div> {% endcomment %}
     
     {{ link_formset.management_form }}
     {% for form in link_formset %}
@@ -79,7 +48,9 @@ Linkwall | Edit Profile
           <label for="{{ field.id_for_label }}">
             {{ field.label|title }}
           </label>
-          {{ field|add_class:"h-9 px-3 py-1.5 rounded-full border border-line focus:outline-none mb-3" }}
+
+          {{ field|add_class:"text-input mb-3" }}
+
           {% if field.errors %}
             <p class="error mb-3">
               {{ field.errors.0 }}
@@ -92,8 +63,6 @@ Linkwall | Edit Profile
     <button type="submit" class="btn bg-orange-500 hover:bg-orange-600 text-white">
       Save Changes
     </button>
-
-
   </form>
 </div>
 {% endblock %}
