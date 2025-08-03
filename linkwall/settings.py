@@ -132,8 +132,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Authentication redircts
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/form/edit-profile'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/auth/login/'
 
 # Media storage for image fields in forms
