@@ -32,6 +32,14 @@ class LinkForm(forms.ModelForm):
         model = Link
         fields = ['label', 'url']
 
+    def clean_label(self):
+        label = self.cleaned_data.get('label', '')
+        return label.strip() if label else label
+
+    def clean_url(self):
+        url = self.cleaned_data.get('url', '')
+        return url.strip() if url else url
+
     def clean(self):
         cleaned_data = super().clean()
         label = cleaned_data.get('label', '').strip()

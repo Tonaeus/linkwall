@@ -7,7 +7,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     slug = models.SlugField(unique=True)
     avatar = models.ImageField(upload_to=avatar_upload_to, blank=True)
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, blank=True)
     biography = models.TextField(blank=True)
 
     def save(self, *args, **kwargs):
