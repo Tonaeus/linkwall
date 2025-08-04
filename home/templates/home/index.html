@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_navbar.html' %}
 {% load static %}
 
 {% block title %}
@@ -6,19 +6,16 @@ Linkwall
 {% endblock %}
 
 {% block navbar %}
+  {% if user.is_authenticated %}
+    {% include "partials/profile_button.html" %}
+  {% endif %}
 
-{% if user.is_authenticated %}
-{% include "partials/profile_button.html" %}
-{% endif %}
-
-{% if not user.is_authenticated %}
-{% include "partials/login_button.html" %}
-{% else %}
-{% include "partials/logout_button.html" %}
-{% endif %}
-
+  {% if not user.is_authenticated %}
+    {% include "partials/login_button.html" %}
+  {% else %}
+    {% include "partials/logout_button.html" %}
+  {% endif %}
 {% endblock %}
-
-{% block content %}
+{% block main %}
 
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_navbar.html' %}
 {% load widget_tweaks %}
 
 {% block title %}
@@ -9,7 +9,7 @@ Linkwall | Edit Profile
 {% include "partials/logout_button.html" %}
 {% endblock %}
 
-{% block content %}
+{% block main %}
 <div class="flex flex-1 justify-center items-center">
   <form method="post" enctype="multipart/form-data" class="max-w-xs m-4">
     {% csrf_token %}

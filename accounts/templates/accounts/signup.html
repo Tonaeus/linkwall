@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_navbar.html' %}
 {% load widget_tweaks %}
 
 {% block title %}
 Linkwall | Sign Up
 {% endblock %}
 
-{% block content %}
+{% block main %}
 <div class="flex flex-1 justify-center items-center">
   <form method="post" class="max-w-xs mx-4 mt-4 mb-18">
     {% csrf_token %}
