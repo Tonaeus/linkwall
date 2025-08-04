@@ -6,6 +6,9 @@ Linkwall | Edit Profile
 {% endblock %}
 
 {% block navbar %}
+{% if profile %}
+  {% include "partials/user_profile_button.html" with profile=profile %}
+{% endif %}
 {% include "partials/logout_button.html" %}
 {% endblock %}
 

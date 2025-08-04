@@ -33,6 +33,7 @@ def edit_profile(request):
         link_formset = LinkFormSet(instance=profile)
 
     return render(request, "form/edit_profile.html", {
+        "profile": profile,
         "profile_form": profile_form,
         "link_formset": link_formset,
     })

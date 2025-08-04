@@ -1,0 +1,7 @@
+{% load static %}
+
+{% if profile %}
+  <a href="{% url 'user:user_profile' profile.slug %}" class="nav-btn">
+    <img src="{% static 'images/account-circle.png' %}" alt="Account Circle" class="w-7 h-7" />
+  </a>
+{% endif %}
