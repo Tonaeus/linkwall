@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "home",
     "accounts",
     "form",
+    "user",
 ]
 
 MIDDLEWARE = [

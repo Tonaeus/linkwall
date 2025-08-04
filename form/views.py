@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse, HttpResponseNotAllowed
+from django.forms import inlineformset_factory
 from .models import Profile, Link
 from .forms import ProfileForm, LinkForm
-from django.forms import inlineformset_factory
 
 @login_required
 def edit_profile(request):
