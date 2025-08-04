@@ -1,0 +1,26 @@
+{% extends 'base_navbar.html' %}
+
+{% block title %}
+Linkwall
+{% endblock %}
+
+{% block navbar %}
+  {% if user.is_authenticated %}
+    {% if profile %}
+      {% include "partials/user_profile_button.html" with profile=profile %}
+    {% endif %}
+    {% include "partials/edit_profile_button.html" %}
+    {% include "partials/logout_button.html" %}
+  {% else %}
+    {% include "partials/login_button.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block main %}
+<div class="flex flex-col flex-1 justify-center items-center">
+	<div class="text-center mb-14">
+		<h1 class="text-7xl font-bold">500</h1>
+		<h2 class="text-3xl text-gray-500">Internal Server Error</h2>
+	</div>
+</div>
+{% endblock %}
