@@ -1,5 +1,4 @@
 {% extends 'base_navbar.html' %}
-{% load static %}
 
 {% block title %}
 Linkwall
@@ -11,14 +10,12 @@ Linkwall
       {% include "partials/user_profile_button.html" with profile=profile %}
     {% endif %}
     {% include "partials/edit_profile_button.html" %}
-  {% endif %}
-
-  {% if not user.is_authenticated %}
-    {% include "partials/login_button.html" %}
-  {% else %}
     {% include "partials/logout_button.html" %}
+  {% else %}
+    {% include "partials/login_button.html" %}
   {% endif %}
 {% endblock %}
+
 {% block main %}
 
 {% endblock %}
