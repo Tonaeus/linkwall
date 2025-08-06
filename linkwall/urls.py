@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static 
 from django.conf import settings
-from django.views.generic.base import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from home.sitemap import HomeStaticSitemap
 from user.sitemap import UserProfileSitemap
+from core.views import robots_txt
 
 sitemaps = {
-    # "home": HomeStaticSitemap,
+    "home": HomeStaticSitemap,
     "user": UserProfileSitemap,
 }
 
@@ -34,7 +34,7 @@ urlpatterns = [
     path("", include(("home.urls", "home"), namespace="home")),
     path("form/", include(("form.urls", "form"), namespace="form")),
     path("user/", include(("user.urls", "user"), namespace="user")),
-    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    path('robots.txt', robots_txt, name='robots_txt'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
 
