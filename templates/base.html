@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="{% static 'css/output.css' %}" rel="stylesheet" />
 		<title>{% block title %}{% endblock %}</title>
+		<meta name="description" content="{% block meta_description %}{% endblock %}">
 	</head>
 	<body class="flex flex-col min-h-screen">
     {% block content %}{% endblock %}

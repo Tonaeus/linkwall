@@ -5,6 +5,10 @@
 Linkwall
 {% endblock %}
 
+{% block meta_description %}
+Showcase your content, platforms, and socials in one personalized page you can easily share anywhere
+{% endblock %}
+
 {% block navbar %}
   {% if user.is_authenticated %}
     {% if profile %}
@@ -25,7 +29,7 @@ Linkwall
         Your passion. Your platform. Your page.
       </h1>
       <p class="text-gray-500 mb-6">
-        Showcase your content, platforms, and socials in one personalized page you can effortlessly share anywhere
+        Showcase your content, platforms, and socials in one personalized page you can easily share anywhere
       </p>
       <a href="{% url 'accounts:signup' %}" class="inline-flex items-center justify-center h-9 rounded px-8 cursor-pointer transition bg-orange-500 hover:bg-orange-600 text-white">
           Launch Your Page
