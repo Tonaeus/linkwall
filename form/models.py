@@ -9,6 +9,7 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to=avatar_upload_to, blank=True)
     name = models.CharField(max_length=150, blank=True)
     biography = models.TextField(blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -28,6 +29,7 @@ class Link(models.Model):
     profile = models.ForeignKey(Profile, related_name="links", on_delete=models.CASCADE)
     label = models.CharField(max_length=150, blank=True)
     url = models.URLField(blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["id"]

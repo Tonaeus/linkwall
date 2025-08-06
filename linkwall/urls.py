@@ -19,6 +19,14 @@ from django.urls import path, include
 from django.conf.urls.static import static 
 from django.conf import settings
 from django.views.generic.base import TemplateView
+from django.contrib.sitemaps.views import sitemap
+from home.sitemap import HomeStaticSitemap
+from user.sitemap import UserProfileSitemap
+
+sitemaps = {
+    # "home": HomeStaticSitemap,
+    "user": UserProfileSitemap,
+}
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,6 +35,7 @@ urlpatterns = [
     path("form/", include(("form.urls", "form"), namespace="form")),
     path("user/", include(("user.urls", "user"), namespace="user")),
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
 
 if settings.DEBUG:

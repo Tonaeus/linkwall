@@ -46,7 +46,11 @@ INSTALLED_APPS = [
     "accounts",
     "form",
     "user",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
