@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
+		<link href="{% static 'css/output.css' %}" rel="stylesheet" />
+		<title>{% block title %}{% endblock %}</title>
+		<meta name="description" content="{% block meta_description %}{% endblock %}">
+	</head>
+	<body class="flex flex-col min-h-screen">
+    {% block content %}{% endblock %}
+	</body>
+</html>

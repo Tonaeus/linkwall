@@ -1,0 +1,77 @@
+{% extends 'base_navbar.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+Linkwall | Edit Profile
+{% endblock %}
+
+{% block navbar %}
+{% if profile %}
+  {% include "partials/user_profile_button.html" with profile=profile %}
+{% endif %}
+{% include "partials/logout_button.html" %}
+{% endblock %}
+
+{% block main %}
+<div class="flex flex-1 justify-center items-center">
+  <form method="post" enctype="multipart/form-data" class="max-w-xs m-4">
+    {% csrf_token %}
+
+    {% for field in profile_form %}
+      <div class="flex flex-col">
+        {% with wt=field|widget_type %}
+          {% if wt == "customfileinput" %}
+            {{ field }}
+          {% elif wt == "textinput" %}
+            <label for="{{ field.id_for_label }}" class="text-sm mb-1">
+              {{ field.label|title }}
+            </label>
+            {{ field|add_class:"text-input mb-3" }}
+          {% elif wt == "textarea" %}
+            <label for="{{ field.id_for_label }}" class="text-sm mb-1">
+              {{ field.label|title }}
+            </label>
+            {{ field|add_class:"text-area mb-3" }}
+          {% endif %}
+        {% endwith %}
+
+        {% if field.errors %}
+          <p class="error mb-3">
+            {{ field.errors.0 }}
+          </p>
+        {% endif %}
+      </div>
+    {% endfor %}
+    
+    {{ link_formset.management_form }}
+    {% for form in link_formset %}
+      {% for field in form.hidden_fields %}
+        {{ field }}
+      {% endfor %}
+      {% for field in form.visible_fields %}
+        {% if field.name != 'DELETE' %}
+          <div class="flex flex-col">
+            <label for="{{ field.id_for_label }}" class="text-sm mb-1">
+              {{ field.label|title }} {{ forloop.parentloop.counter }}
+            </label>
+
+            {{ field|add_class:"text-input mb-3" }}
+
+            {% if field.errors %}
+              <p class="error mb-3">
+                {{ field.errors.0 }}
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+
+    <div class="h-6"></div>
+
+    <button type="submit" class="btn bg-orange-500 hover:bg-orange-600 text-white">
+      Save Changes
+    </button>
+  </form>
+</div>
+{% endblock %}

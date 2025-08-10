@@ -1,0 +1,82 @@
+{% load static %}
+
+<div class="mb-3">
+  <label for="{{ widget.attrs.id }}" class="flex justify-center items-center w-full mb-3">
+    <img
+      id="avatar-preview"
+      src="{% if widget.is_initial %}{{ widget.value.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}"
+      alt="Current Avatar"
+      class="w-3/4 aspect-square rounded-full object-cover"
+    />
+  </label>
+
+  <label for="{{ widget.attrs.id }}" class="btn bg-orange-500 hover:bg-orange-600 text-white mb-3">
+    {% if not widget.is_initial %}
+      Upload Image
+    {% else %}
+      Change Image
+    {% endif %}
+  </label>
+
+  <input type="file" name="{{ widget.name }}" id="{{ widget.attrs.id }}" style="display:none" accept="image/*" {% include "django/forms/widgets/attrs.html" %}>
+
+  {% if widget.is_initial and not widget.is_required %}
+    <div class="relative w-full">
+      <input type="checkbox" name="{{ widget.checkbox_name }}" id="delete-checkbox" class="peer hidden">
+      <label for="delete-checkbox"
+             class="btn
+                    border border-gray-300 peer-checked:border-orange-300
+                    text-gray-500 peer-checked:text-orange-500
+                    bg-gray-100 peer-checked:bg-orange-100
+                    hover:bg-gray-200 peer-checked:hover:bg-orange-200
+                    ">
+        Delete Image
+      </label>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  const inputElement = document.getElementById("{{ widget.attrs.id }}");
+  const deleteElement = document.getElementById("delete-checkbox");
+  const previewElement = document.getElementById("avatar-preview");
+
+  const originalImageUrl = previewElement.src;
+  let currentImageUrl = originalImageUrl;
+
+  inputElement.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        previewElement.src = e.target.result;
+        previewElement.style.display = 'block';
+        if (deleteElement) {
+          currentImageUrl = e.target.result;
+          deleteElement.checked = false;
+        }
+      }
+      reader.readAsDataURL(file);
+    } 
+    else {
+      {% if widget.is_initial %}
+        previewElement.src = "{{ widget.value.url }}";
+        currentImageUrl = "{{ widget.value.url }}";
+      {% else %}
+        previewElement.style.display = 'none';
+      {% endif %}
+    }
+  });
+  if (deleteElement) {
+
+    deleteElement.addEventListener('change', function() {
+      if (this.checked) {
+        previewElement.src = "{% static 'images/default-avatar.png' %}";
+        inputElement.value = '';
+      } 
+      else {
+        previewElement.src = currentImageUrl;
+      }
+    });
+  }
+</script>

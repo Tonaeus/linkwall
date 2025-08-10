@@ -1,0 +1,42 @@
+{% extends 'base_navbar.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+Linkwall | Sign Up
+{% endblock %}
+
+{% block main %}
+<div class="flex flex-1 justify-center items-center">
+  <form method="post" class="max-w-xs mx-4 mt-4 mb-18">
+    {% csrf_token %}
+
+    {% for field in form %}
+      <div class="flex flex-col">
+        <label for="{{ field.id_for_label }}" class="text-sm mb-1">
+          {{ field.label|title }}
+        </label>
+        {{ field|add_class:"text-input mb-3" }}
+
+        {% if field.errors %}
+          <p class="error mb-3">
+            {{ field.errors.0 }}
+          </p>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <div class="h-6"></div>
+
+    <button type="submit" class="btn bg-orange-500 hover:bg-orange-600 text-white mb-3">
+      Sign Up
+    </button>
+
+    <p class="text-center">
+      Already have an account?
+      <a href="{% url 'accounts:login' %}" class="text-blue-700 hover:underline">
+        Log In
+      </a>
+		</p>
+  </form>
+</div>
+{% endblock %}

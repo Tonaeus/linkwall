@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Linkwall | {{ profile.name|default:profile.user.username }}
+{% endblock %}
+
+{% block meta_description %}
+Explore {{ profile.name|default:profile.user.username }}'s personalized Linkwall featuring content, platforms, and socials.
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex justify-center items-center">
+  <div class="flex flex-col w-full max-w-xs m-4">
+    <div class="flex justify-center items-center w-full mb-3">
+      <img
+        src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}"
+        alt="Current Avatar"
+        class="w-3/4 aspect-square rounded-full object-cover"
+      />
+    </div>
+
+    <h1 class="text-center text-2xl font-bold {% if profile.biography %}mb-3{% endif %}">
+      {{ profile.name|default:profile.user.username }}
+    </h1>
+
+    {% if profile.biography %}
+      <p class="text-center text-gray-500 {% if links %}mb-3{% endif %}">
+        {{ profile.biography }}
+      </p>
+    {% endif %}
+
+    {% for link in links %}
+      <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="btn bg-orange-500 hover:bg-orange-600 text-white {% if not forloop.last %}mb-3{% endif %}">
+        {{ link.label }}
+      </a>
+    {% endfor %}
+  <div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base_navbar.html' %}
+{% load static %}
+
+{% block title %}
+Linkwall
+{% endblock %}
+
+{% block meta_description %}
+Showcase your content, platforms, and socials in one personalized page you can easily share anywhere
+{% endblock %}
+
+{% block navbar %}
+  {% if user.is_authenticated %}
+    {% if profile %}
+      {% include "partials/user_profile_button.html" with profile=profile %}
+    {% endif %}
+    {% include "partials/edit_profile_button.html" %}
+    {% include "partials/logout_button.html" %}
+  {% else %}
+    {% include "partials/login_button.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block main %}
+<div class="flex flex-1 flex-col justify-center items-center mb-14">
+  <div class="flex justify-center items-center px-4 py-8">
+    <div class="max-w-xl text-center">
+      <h1 class="text-3xl font-bold mb-3">
+        Your passion. Your platform. Your page.
+      </h1>
+      <p class="text-gray-500 mb-6">
+        Showcase your content, platforms, and socials in one personalized page you can easily share anywhere
+      </p>
+      <a href="{% url 'accounts:signup' %}" class="inline-flex items-center justify-center h-9 rounded px-8 cursor-pointer transition bg-orange-500 hover:bg-orange-600 text-white">
+          Launch Your Page
+      </a>
+    </div>
+  </div>
+  <div class="flex justify-center items-center px-4 pt-8 py-8">
+    <img 
+      src="{% static 'home/images/3-devices-black.png' %}""
+      alt="3 Devices Black"
+      class="w-full max-w-xl"
+    />
+  </div>
+</div>
+{% endblock %}
