@@ -48,11 +48,19 @@ Visit the website at [https://linkwall.tonytran.dev/](https://linkwall.tonytran.
     ```
 
 9.  ```bash
-    python3 manage.py runserver
+    python3 manage.py createsuperuser
     ```
 
 10. ```bash
+    python3 manage.py runserver
+    ```
+
+11. ```bash
     deactivate
+    ```
+
+12. ```bash
+    cd ..
     ```
 
 ## Contact
