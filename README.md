@@ -4,7 +4,7 @@ Linkwall is a web application that lets users create a single web page to showca
 
 ## Website
 
-Visit the website at [https://linkwall.tonytran.dev/](https://linkwall.tonytran.dev/).
+Visit the website at [https://linkwall.tonytran.dev](https://linkwall.tonytran.dev).
 
 ## Technologies
 
