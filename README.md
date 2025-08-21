@@ -11,7 +11,7 @@ Visit the website at [https://linkwall.tonytran.dev](https://linkwall.tonytran.d
 **Database**: SQLite  
 **Backend**: Django  
 **Frontend**: HTML, CSS, JavaScript, Tailwind CSS  
-**Deployment**: Digital Ocean, Gunicorn, Nginx, Cloudflare
+**Deployment**: DigitalOcean, Gunicorn, Nginx, Cloudflare
 
 ## Contact
 
